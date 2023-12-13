@@ -1,0 +1,13 @@
+import './App.css'
+import Products from './assets/components/Products'
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+function App() {
+
+  return (
+    <>
+      <Products/>
+    </>
+  )
+}
+
+export default App
