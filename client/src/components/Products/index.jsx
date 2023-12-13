@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import ProductCard from '../ProductCard'
 
 const Products = () => {
     const baseUrl='http://localhost:8000/products'
 
-    const [produts, setProduts] = useState([])
+    const [products, setProducts] = useState([])
 
-    async function getData(){
-        const res= await fetch(baseUrl)
-        const movies=await res.json()
-        setProduts(movies)
+    async function getData() {
+      try {
+        const response = await axios.get(baseUrl);
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error', error);
+      }
     }
 
     useEffect(() => {
@@ -23,7 +27,7 @@ const Products = () => {
        <h1 className='mb-5'>Products</h1>
         <div className="row">
         {
-            produts && produts.map(product=>(
+            products && products.map(product=>(
                 <ProductCard key={product.id} {...product} />
             ))
         }
